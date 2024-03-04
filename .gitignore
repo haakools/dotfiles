@@ -1,0 +1,7 @@
+
+
+# netrw
+*.netrwhist
+
+# compiled pakcer
+*compiled_packer.lua

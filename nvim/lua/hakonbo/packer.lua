@@ -20,7 +20,14 @@ return require('packer').startup(function(use)
 	use({
 		'rose-pine/neovim',
 		as = 'rose-pine',
+        -- rose-pine settings
+
 		config = function()
+            require('rose-pine').setup({
+                styles = {
+                    italic = false
+                }
+            })
 			vim.cmd('colorscheme rose-pine')
 		end
 	})
@@ -40,8 +47,8 @@ return require('packer').startup(function(use)
 		branch = 'v3.x',
 		requires = {
 			--- Uncomment the two plugins below if you want to manage the language servers from neovim
-			-- {'williamboman/mason.nvim'},
-			-- {'williamboman/mason-lspconfig.nvim'},
+			{'williamboman/mason.nvim'},
+			{'williamboman/mason-lspconfig.nvim'},
 
 			-- LSP Support
 			{'neovim/nvim-lspconfig'},
