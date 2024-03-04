@@ -4,4 +4,4 @@
 *.netrwhist
 
 # compiled pakcer
-*compiled_packer.lua
+*packer_compiled.lua
