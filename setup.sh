@@ -23,6 +23,6 @@ create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 
 # Setup tmux configuration
 create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
-
+
 echo "Setup completed! Symlinks have been created."
 
