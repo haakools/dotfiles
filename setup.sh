@@ -24,5 +24,8 @@ create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 # Setup tmux configuration
 create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
+# Setup aliases. Requires sourcing ~/aliases.sh in ~/.bashrc
+create_symlink "$DOTFILES_DIR/aliases.sh" "$HOME/aliases.sh"
+
 echo "Setup completed! Symlinks have been created."
 
