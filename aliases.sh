@@ -9,6 +9,7 @@ alias gbc="git rev-parse --abbrev-ref HEAD" #Git Branch Current
 alias gf="git fetch"
 alias gcm="git commit -m "
 alias gds="git diff --staged"
+alias gba="git branch -a"
 
 
 # Not really alias but git specific helpers
