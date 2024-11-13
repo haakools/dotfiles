@@ -19,10 +19,7 @@ require('mason-lspconfig').setup({
 		'eslint', -- 
 		'jsonls', --json
 		'pyright', --python
-        'jedi_language_server', --python, import crash...
-        --'pylyzer', --install fails..
         'pylsp'
-		--'sumneko_lua'
 	},
 	handlers = {
 		lsp_zero.default_setup,
