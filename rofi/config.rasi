@@ -1,0 +1,23 @@
+configuration {
+    modi: [window,run,ssh,drun];
+    font: "JetBrains Mono Nerd Font 12";
+    show-icons: true;
+    icon-theme: "Papirus";
+    display-drun: "Applications";
+    display-window: "Windows";
+    display-run: "Run";
+    display-ssh: "SSH";
+    drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    window-format: "{w} · {c} · {t}";
+    
+    timeout {
+        action: "kb-cancel";
+        delay: 0;
+    }
+    filebrowser {
+        directories-first: true;
+        sorting-method: "name";
+    }
+}
+
+@theme "themes/rounded-nord"

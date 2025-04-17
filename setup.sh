@@ -24,10 +24,10 @@ create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
 # Setup aliases. Requires sourcing ~/aliases.sh in ~/.bashrc
-create_symlink "$DOTFILES_DIR/aliases.sh" "$HOME/aliases.sh"
+create_symlink "$DOTFILES_DIR/aliases.sh" "$HOME/bash_aliases.sh"
 
 # Setup rofi configuration
-create_symlink "$DOTFILES_DIR/rofi" "$HOME/.config/rofi"
+ln -sfn "$DOTFILES_DIR/rofi" "$HOME/.config/rofi"
 
 # Setup picom configuration
 create_symlink "$DOTFILES_DIR/picom.conf" "$HOME/.config/picom/picom.conf"
