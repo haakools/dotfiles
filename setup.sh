@@ -1,17 +1,28 @@
 #!/bin/bash
-
 # Installing required packages
 sudo apt install rofi picom nitrogen neofetch
 
 DOTFILES_DIR=$(git rev-parse --show-toplevel)
 
+# Function to create a clean symlink by removing the target first
 create_symlink() {
     local source=$1
     local target=$2
     
-    echo "Creating symlink for $target"
-    # -f flag to overwrite existing files without prompting
-    ln -sf "$source" "$target"
+    echo "Setting up symlink for $target"
+    
+    # Remove the target if it exists (whether it's a file, directory, or symlink)
+    if [ -e "$target" ] || [ -L "$target" ]; then
+        echo "  Removing existing target: $target"
+        rm -rf "$target"
+    fi
+    
+    # Create the parent directory if it doesn't exist
+    mkdir -p "$(dirname "$target")"
+    
+    # Create the new symlink
+    echo "  Creating new symlink: $source -> $target"
+    ln -s "$source" "$target"
 }
 
 # Create .config directory if it doesn't exist
@@ -24,10 +35,10 @@ create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
 # Setup aliases. Requires sourcing ~/aliases.sh in ~/.bashrc
-create_symlink "$DOTFILES_DIR/aliases.sh" "$HOME/bash_aliases"
+create_symlink "$DOTFILES_DIR/aliases.sh" "$HOME/.bash_aliases"
 
 # Setup rofi configuration
-ln -sfn "$DOTFILES_DIR/rofi" "$HOME/.config/rofi"
+create_symlink "$DOTFILES_DIR/rofi" "$HOME/.config/rofi"
 
 # Setup picom configuration
 create_symlink "$DOTFILES_DIR/picom.conf" "$HOME/.config/picom/picom.conf"
@@ -49,4 +60,4 @@ mkdir -p "$DOTFILES_DIR/rofi"
 mkdir -p "$DOTFILES_DIR/neofetch"
 mkdir -p "$DOTFILES_DIR/nitrogen"
 
-echo "Setup completed! Symlinks have been created."
+echo "Setup completed! All existing symlinks were removed and clean symlinks have been created."
