@@ -3,7 +3,7 @@ configuration {
     font: "JetBrains Mono Nerd Font 12";
     show-icons: true;
     icon-theme: "Papirus";
-    display-drun: "Applications";
+    display-drun: "rofi";
     display-window: "Windows";
     display-run: "Run";
     display-ssh: "SSH";
