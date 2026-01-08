@@ -1,4 +1,3 @@
-
 alias vim="nvim"
 alias grep='grep --color=auto '
 
@@ -62,3 +61,13 @@ o() {
     fi
 }
 
+
+
+
+## For viewing csv files
+function pretty_csv {
+    column -t -s, -n "$@" | less -F -S -X -K
+}
+
+
+export AWS_PROFILE="dev"
