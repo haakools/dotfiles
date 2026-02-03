@@ -32,14 +32,15 @@ return require('packer').startup(function(use)
         end
     })
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-    use('nvim-treesitter/playground')
+    use('nvim-treesitter/nvim-treesitter-textobjects')
+    -- use('nvim-treesitter/playground')
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use {
         "williamboman/mason.nvim",
-        "killiamboman/mason-lspconfig.nvim",
-        "nkovim/nvim-lspconfig"
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig"
     }
 
     use {
