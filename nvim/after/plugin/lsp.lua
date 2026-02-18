@@ -1,48 +1,60 @@
+require('mason').setup()
 
--- local lsp = require('lsp-zero')
--- 
--- local lsp_zero = require('lsp-zero')
--- 
--- lsp_zero.on_attach(function(client, bufnr)
--- 	-- see :help lsp-zero-keybindings
--- 	-- to learn the available actions
--- 	lsp_zero.default_keymaps({buffer = bufnr})
--- end)
--- 
--- require('mason').setup({})
--- require('mason-lspconfig').setup({
--- 	-- Replace the language servers listed here 
--- 	-- with the ones you want to install
--- 	ensure_installed = {
--- 		'clangd', --C / C++
--- 		'tsserver', --Typescript
--- 		'eslint', -- 
--- 		'jsonls', --json
--- 		'pyright', --python
---         'pylsp'
--- 	},
--- 	handlers = {
--- 		lsp_zero.default_setup,
--- 	},
--- })
--- 
--- 
--- lsp.preset('recommend')
--- lsp.setup()
--- 
--- local cmp = require('cmp')
--- local cmp_select = {behavior = cmp.SelectBehavior.Select}
--- 
--- local cmp_mappings = lsp.defaults.cmp_mappings({
--- 	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
--- 	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
--- 	['<C-c>'] = cmp.mapping.confirm({select = true}),
--- 	['<C-space>'] = cmp.mapping.complete(cmp_select)
--- })
--- 
--- lsp.set_preferences({
--- 	sign_icons = { }
--- })
--- 
--- 
--- 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        'clangd',        -- C / C++
+        'ts_ls',         -- TypeScript (tsserver was renamed)
+        'eslint',
+        'jsonls',
+        'pyright',
+    },
+    handlers = {
+        function(server_name)
+            require('lspconfig')[server_name].setup({
+                capabilities = capabilities,
+            })
+        end,
+    }
+})
+
+-- Autocompletion setup
+local cmp = require('cmp')
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-p>']     = cmp.mapping.select_prev_item(),
+        ['<C-n>']     = cmp.mapping.select_next_item(),
+        ['<C-c>']     = cmp.mapping.confirm({ select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+    }),
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    },
+})
+
+-- Attach keymaps when LSP connects to a buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(event)
+        local opts = { buffer = event.buf }
+        vim.keymap.set('n', 'gd',         vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K',          vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'gr',         vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '[d',         vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', ']d',         vim.diagnostic.goto_next, opts)
+    end
+})
+
+
+-- See the diagnotistc window with leader+d
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
+
+
