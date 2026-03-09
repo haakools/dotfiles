@@ -71,3 +71,8 @@ function pretty_csv {
 
 
 export AWS_PROFILE="dev"
+
+# Adding evocheck to path
+PATH=$PATH:~/dev/evo-check/src
+
+
