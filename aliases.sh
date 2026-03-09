@@ -37,6 +37,10 @@ auto_venv() {
     if [[ -f venv/bin/activate ]]; then
         source venv/bin/activate
     fi
+    # Activate if new directory has a venv
+    if [[ -f .venv/bin/activate ]]; then
+        source .venv/bin/activate
+    fi
 }
 
 # Replace alias with function
