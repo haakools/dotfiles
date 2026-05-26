@@ -80,3 +80,4 @@ export AWS_PROFILE="dev"
 PATH=$PATH:~/dev/evo-check/src
 
 
+eval "$(starship init bash)"
