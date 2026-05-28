@@ -9,6 +9,12 @@ used_pct=$(echo "$input"  | jq -r '.context_window.used_percentage // 0')
 rem_pct=$(echo "$input"   | jq -r '.context_window.remaining_percentage // 0')
 dur_ms=$(echo "$input"    | jq -r '.cost.total_duration_ms // 0')
 
+# Auth account
+auth_json=$(claude auth status 2>/dev/null)
+email=$(echo "$auth_json" | jq -r '.email // ""')
+org=$(echo "$auth_json"   | jq -r '.orgName // ""')
+account="${email} (${org})"
+
 # Git branch
 branch=""
 if [ -n "$cwd" ]; then
@@ -27,5 +33,5 @@ else
   dur_str="${secs}s"
 fi
 
-printf " ⎇ %s  │  %s  │  %s / %s  (%s%%)  │  %s" \
-  "$branch" "$model" "$used_k" "$rem_k" "$used_pct" "$dur_str"
+printf " ⎇ %s  │  %s  │  %s / %s  (%s%%)  │  %s  │  %s" \
+  "$branch" "$model" "$used_k" "$rem_k" "$used_pct" "$dur_str" "$account"

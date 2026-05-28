@@ -49,6 +49,10 @@ create_symlink "$DOTFILES_DIR/nitrogen" "$HOME/.config/nitrogen"
 # Setup neofetch configuration
 create_symlink "$DOTFILES_DIR/neofetch" "$HOME/.config/neofetch"
 
+# Setup Claude Code settings and statusline
+create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
+create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
+
 # Set GNOME keyboard shortcuts for rofi
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Rofi Launcher"
