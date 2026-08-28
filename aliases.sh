@@ -74,6 +74,10 @@ function pretty_csv {
 }
 
 
+# Separate Claude Code accounts (work/personal) on the same machine
+alias claude-work='CLAUDE_CONFIG_DIR=~/.claude-work claude'
+alias claude-personal='CLAUDE_CONFIG_DIR=~/.claude-personal claude'
+
 #export AWS_PROFILE="dev"
 
 # Adding evocheck to path

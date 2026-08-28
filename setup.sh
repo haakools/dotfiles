@@ -54,6 +54,14 @@ create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.jso
 create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 create_symlink "$DOTFILES_DIR/.claude/skills" "$HOME/.claude/skills"
 
+# Setup Claude Code settings, statusline, and skills for the work/personal
+# account profiles (see claude-work/claude-personal aliases in aliases.sh)
+for profile in work personal; do
+    create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude-$profile/settings.json"
+    create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude-$profile/statusline-command.sh"
+    create_symlink "$DOTFILES_DIR/.claude/skills" "$HOME/.claude-$profile/skills"
+done
+
 # Set GNOME keyboard shortcuts for rofi
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Rofi Launcher"
