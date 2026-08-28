@@ -49,17 +49,20 @@ create_symlink "$DOTFILES_DIR/nitrogen" "$HOME/.config/nitrogen"
 # Setup neofetch configuration
 create_symlink "$DOTFILES_DIR/neofetch" "$HOME/.config/neofetch"
 
-# Setup Claude Code settings, statusline, and skills
+# Setup Claude Code settings, statusline, skills, and notify hook
 create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
 create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 create_symlink "$DOTFILES_DIR/.claude/skills" "$HOME/.claude/skills"
+create_symlink "$DOTFILES_DIR/.claude/notify.sh" "$HOME/.claude/notify.sh"
 
-# Setup Claude Code settings, statusline, and skills for the work/personal
-# account profiles (see claude-work/claude-personal aliases in aliases.sh)
+# Setup Claude Code settings, statusline, skills, and notify hook for the
+# work/personal account profiles (see claude-work/claude-personal aliases
+# in aliases.sh)
 for profile in work personal; do
     create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude-$profile/settings.json"
     create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude-$profile/statusline-command.sh"
     create_symlink "$DOTFILES_DIR/.claude/skills" "$HOME/.claude-$profile/skills"
+    create_symlink "$DOTFILES_DIR/.claude/notify.sh" "$HOME/.claude-$profile/notify.sh"
 done
 
 # Set GNOME keyboard shortcuts for rofi
