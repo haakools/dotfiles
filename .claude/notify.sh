@@ -19,8 +19,17 @@ else
     SOUND_FILE="$NEEDS_INPUT_SOUND"
 fi
 
-# Flag this pane's window in the tmux status bar (monitor-bell picks this up)
-{ printf '\a' > /dev/tty; } 2>/dev/null
+# Flag this pane's window in the tmux status bar (monitor-bell picks this
+# up). Hook subprocesses have no controlling terminal, so /dev/tty doesn't
+# work here — resolve the pane's actual tty device via TMUX_PANE instead
+# and write the bell there directly (this is pane output, not keystrokes,
+# so it can't land in the shell's input the way send-keys would).
+if [ -n "$TMUX_PANE" ]; then
+    PANE_TTY=$(tmux display-message -p -t "$TMUX_PANE" '#{pane_tty}' 2>/dev/null)
+    if [ -n "$PANE_TTY" ]; then
+        { printf '\a' > "$PANE_TTY"; } 2>/dev/null
+    fi
+fi
 
 # Play the sound without blocking the hook (or Claude waiting on it)
 if [ -f "$SOUND_FILE" ]; then
