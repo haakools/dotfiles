@@ -3,14 +3,15 @@
 # plays a sound, so you can tell which pane needs input or just finished
 # without tabbing through every window.
 #
-# Sounds default to freedesktop theme files; override per-event by
-# exporting CLAUDE_NOTIFY_SOUND / CLAUDE_STOP_SOUND before launching
-# tmux/claude, or just edit the paths below.
+# Sounds default to the files in ~/.claude/sounds (symlinked from this
+# repo's .claude/sounds/ — swap them there to change the sound for good).
+# Override per-event by exporting CLAUDE_NOTIFY_SOUND / CLAUDE_STOP_SOUND
+# before launching tmux/claude instead, if you just want a one-off change.
 
 EVENT_NAME="$1"
 
-NEEDS_INPUT_SOUND="${CLAUDE_NOTIFY_SOUND:-/usr/share/sounds/freedesktop/stereo/message.oga}"
-DONE_SOUND="${CLAUDE_STOP_SOUND:-/usr/share/sounds/freedesktop/stereo/complete.oga}"
+NEEDS_INPUT_SOUND="${CLAUDE_NOTIFY_SOUND:-$HOME/.claude/sounds/needs-input.oga}"
+DONE_SOUND="${CLAUDE_STOP_SOUND:-$HOME/.claude/sounds/done.oga}"
 
 if [ "$EVENT_NAME" = "Stop" ]; then
     SOUND_FILE="$DONE_SOUND"
