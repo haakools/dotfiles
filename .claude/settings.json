@@ -1,9 +1,11 @@
 {
-  "enabledPlugins": {
-    "superpowers@claude-plugins-official": true
-  },
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
-  }
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  },
+  "tui": "fullscreen"
 }
