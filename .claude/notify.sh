@@ -11,7 +11,7 @@
 EVENT_NAME="$1"
 
 NEEDS_INPUT_SOUND="${CLAUDE_NOTIFY_SOUND:-$HOME/.claude/sounds/needs-input.oga}"
-DONE_SOUND="${CLAUDE_STOP_SOUND:-$HOME/.claude/sounds/done.oga}"
+DONE_SOUND="${CLAUDE_STOP_SOUND:-$HOME/.claude/sounds/Jobs Done.mp3}"
 
 if [ "$EVENT_NAME" = "Stop" ]; then
     SOUND_FILE="$DONE_SOUND"
@@ -31,9 +31,10 @@ if [ -n "$TMUX_PANE" ]; then
     fi
 fi
 
-# Play the sound without blocking the hook (or Claude waiting on it)
+# Play the sound without blocking the hook (or Claude waiting on it).
+# ffplay (not paplay) so mp3 works alongside ogg/wav.
 if [ -f "$SOUND_FILE" ]; then
-    (paplay "$SOUND_FILE" >/dev/null 2>&1 &)
+    (ffplay -nodisp -autoexit -loglevel quiet "$SOUND_FILE" >/dev/null 2>&1 &)
 fi
 
 exit 0
