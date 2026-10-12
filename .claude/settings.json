@@ -1,5 +1,28 @@
 {
-  "model": "sonnet",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/notify.sh\" Notification",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/notify.sh\" Stop",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
@@ -7,21 +30,5 @@
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true
   },
-  "tui": "fullscreen",
-  "hooks": {
-    "Notification": [
-      {
-        "hooks": [
-          { "type": "command", "command": "bash \"$HOME/.claude/notify.sh\" Notification", "timeout": 5 }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          { "type": "command", "command": "bash \"$HOME/.claude/notify.sh\" Stop", "timeout": 5 }
-        ]
-      }
-    ]
-  }
+  "tui": "fullscreen"
 }

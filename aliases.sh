@@ -66,7 +66,14 @@ o() {
 }
 
 
-
+# Copy files to clipboard
+clip() {
+    if [ $# -eq 0 ]; then
+        xclip -selection clipboard
+    else
+        cat -- "$@" | xclip -selection clipboard
+    fi
+}
 
 ## For viewing csv files
 function pretty_csv {
