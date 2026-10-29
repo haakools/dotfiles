@@ -55,6 +55,7 @@ create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/stat
 create_symlink "$DOTFILES_DIR/.claude/skills" "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/.claude/notify.sh" "$HOME/.claude/notify.sh"
 create_symlink "$DOTFILES_DIR/.claude/sounds" "$HOME/.claude/sounds"
+create_symlink "$DOTFILES_DIR/.claude/keybindings.json" "$HOME/.claude/keybindings.json"
 
 # Setup Claude Code settings, statusline, skills, notify hook, and sounds
 # for the work/personal account profiles (see claude-work/claude-personal
@@ -67,6 +68,7 @@ for profile in work personal; do
     create_symlink "$DOTFILES_DIR/.claude/skills" "$HOME/.claude-$profile/skills"
     create_symlink "$DOTFILES_DIR/.claude/notify.sh" "$HOME/.claude-$profile/notify.sh"
     create_symlink "$DOTFILES_DIR/.claude/sounds" "$HOME/.claude-$profile/sounds"
+    create_symlink "$DOTFILES_DIR/.claude/keybindings.json" "$HOME/.claude-$profile/keybindings.json"
 done
 
 # Set GNOME keyboard shortcuts for rofi
