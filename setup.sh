@@ -49,6 +49,9 @@ create_symlink "$DOTFILES_DIR/nitrogen" "$HOME/.config/nitrogen"
 # Setup neofetch configuration
 create_symlink "$DOTFILES_DIR/neofetch" "$HOME/.config/neofetch"
 
+# Setup cmus rc (only the rc file; cmus keeps its cache and autosave in the same dir)
+create_symlink "$DOTFILES_DIR/cmus/rc" "$HOME/.config/cmus/rc"
+
 # Setup Claude Code settings, statusline, skills, notify hook, and sounds
 create_symlink "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
 create_symlink "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"

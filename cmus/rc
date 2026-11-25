@@ -1,0 +1,19 @@
+# Selection colors
+set color_win_sel_fg=default
+set color_win_sel_bg=default
+set color_win_sel_attr=reverse
+set color_win_cur_sel_fg=default
+set color_win_cur_sel_bg=default
+set color_win_cur_sel_attr=reverse
+set color_win_inactive_sel_fg=default
+set color_win_inactive_sel_bg=default
+set color_win_inactive_sel_attr=underline
+
+# Scan ~/Music at each start
+add ~/Music
+update-cache
+
+# Vim-style Ctrl+D / Ctrl+U: move the cursor 10 rows.
+# The built-in win-half-page-* only scrolls, so it does nothing on short lists.
+bind -f common ^D win-down 10
+bind -f common ^U win-up 10
